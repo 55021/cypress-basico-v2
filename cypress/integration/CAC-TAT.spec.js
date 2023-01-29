@@ -96,4 +96,57 @@ describe('Central de Atendimento ao Cliente TAT', function () {
 			cy.fillMandatoryFieldsAndSubmit();
 		});
 	});
+
+	describe('aula 2', () => {
+		it('seleciona um produto (YouTube) por seu texto', () => {
+			cy.get('#product').select('YouTube');
+			cy.get('#product').should('have.value', 'youtube');
+		});
+
+		it('seleciona um produto (Mentoria) por seu valor (value)', () => {
+			cy.get('#product').select('mentoria');
+			cy.get('#product').should('have.value', 'mentoria');
+		});
+		
+		it('seleciona um produto (Blog) por seu índice', () => {
+			cy.get('#product').select(1);
+			cy.get('#product').should('have.value', 'blog');
+		});
+	});
+
+	describe('aula 3', () => {
+		it('marca o tipo de atendimento "Feedback"', () => {
+			cy.get('input[type="radio"][value="feedback"]').check();
+			cy.get('input[type="radio"][value="feedback"]').should('be.checked');
+		});
+
+		it('marca cada tipo de atendimento', () => {
+			cy.get('input[type="radio"]')
+				.should('have.length', 3)
+				.each(($radio) => {
+					cy.wrap($radio).check();
+					cy.wrap($radio).should('be.checked');
+				});
+		});
+	});
+
+	describe('aula 4', () => {
+		it.only('marca ambos checkboxes, depois desmarca o último', () => {
+			cy.get('input[type="checkbox"]')
+				.as('checkboxes')
+				.check(); // Recebe todos os input checkbox e marca todos.
+			cy.get('@checkboxes')
+				.each(checkbox =>
+					cy.wrap(checkbox).should('be.checked'));
+		});
+
+		// it.only('exibe mensagem de erro quando o telefone se torna obrigatório mas não é preenchido antes do envio do formulário', () => {
+		// 	cy.get('input[type="radio"]')
+		// 		.should('have.length', 3)
+		// 		.each(($radio) => {
+		// 			cy.wrap($radio).check();
+		// 			cy.wrap($radio).should('be.checked');
+		// 		});
+		// });
+	});
 });
