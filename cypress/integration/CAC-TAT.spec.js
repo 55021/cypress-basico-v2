@@ -13,7 +13,7 @@ describe('Central de Atendimento ao Cliente TAT', function () {
 	});
 
 	describe('aula 1', () => {
-		it('verifica o título da aplicação', () => {
+		it.only('verifica o título da aplicação', () => {
 			cy.title().should('eq', 'Central de Atendimento ao Cliente TAT');
 		});
 
@@ -98,7 +98,7 @@ describe('Central de Atendimento ao Cliente TAT', function () {
 	});
 
 	describe('aula 2', () => {
-		it('seleciona um produto (YouTube) por seu texto', () => {
+		it.only('seleciona um produto (YouTube) por seu texto', () => {
 			cy.get('#product').select('YouTube');
 			cy.get('#product').should('have.value', 'youtube');
 		});
@@ -137,15 +137,6 @@ describe('Central de Atendimento ao Cliente TAT', function () {
 				cy.wrap(checkbox).should('be.checked')
 			);
 		});
-
-		// it.only('exibe mensagem de erro quando o telefone se torna obrigatório mas não é preenchido antes do envio do formulário', () => {
-		// 	cy.get('input[type="radio"]')
-		// 		.should('have.length', 3)
-		// 		.each(($radio) => {
-		// 			cy.wrap($radio).check();
-		// 			cy.wrap($radio).should('be.checked');
-		// 		});
-		// });
 	});
 
 	describe('aula 5', () => {
@@ -179,7 +170,7 @@ describe('Central de Atendimento ao Cliente TAT', function () {
 	});
 
 	describe('aula 6', () => {
-		it('verifica que a política de privacidade abre em outra aba sem a necessidade de um clique', () => {
+		it.only('verifica que a política de privacidade abre em outra aba sem a necessidade de um clique', () => {
 			cy.get('a[target="_blank"]').should('exist')
 		});
 		
